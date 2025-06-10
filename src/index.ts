@@ -1,6 +1,7 @@
 import { getSecureChannel } from './channel';
 import { RpcMessage } from './types';
 import { methodHandlers } from './methodHandlers';
+import { wallet } from './lib/wallet';
 
 async function start() {
 

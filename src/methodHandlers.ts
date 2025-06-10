@@ -1,13 +1,9 @@
 import { Channel } from 'amqplib';
 import { RpcMessage } from './types';
+import { wallet } from './lib/wallet';
 
 const signPsbt = async(unsignedPSBT: string): Promise<string> =>{
-  return await new Promise((resolve) => {
-    setTimeout(() => {
-        // Invoke rgb-signer here
-      resolve(`${unsignedPSBT}-signed`);
-    }, 1000);
-  })
+  return await wallet.signPsbt(unsignedPSBT)
 }
 
 export const methodHandlers: Record<string, (msg: RpcMessage, channel: Channel) => void> = {
