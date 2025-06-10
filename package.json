@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "rgb-connect-nodejs": "1.0.17",
   "dependencies": {
     "amqplib": "^0.10.7"
   },
