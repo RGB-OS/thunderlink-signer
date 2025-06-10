@@ -22,7 +22,7 @@ async function start() {
       ch.ack(msg);
     } catch (err: any) {
       console.error('Client error:', err.message);
-      ch.nack(msg, false, true);
+      ch.nack(msg, false, false);
     }
   });
 }

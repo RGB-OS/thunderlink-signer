@@ -2,13 +2,17 @@ import { Channel } from 'amqplib';
 import { RpcMessage } from './types';
 import { wallet } from './lib/wallet';
 
-const signPsbt = async(unsignedPSBT: string): Promise<string> =>{
-  return await wallet.signPsbt(unsignedPSBT)
-}
+// const signPsbt = async(unsignedPSBT: string): Promise<string> =>{
 
+// }
+const mnemonic = process.env.MNEMONIC;
 export const methodHandlers: Record<string, (msg: RpcMessage, channel: Channel) => void> = {
   sign: async (msg, ch) => {
-    const signed = await signPsbt(msg.payload);
+    console.log('Server signed PSBT:', msg.payload);
+    const unsignedPSBT = msg.payload as string;
+    // const signed = await signPsbt(msg.payload);
+    const signed = await wallet.signPsbt(unsignedPSBT,mnemonic);
+    console.log('Client signed PSBT:', signed);
     sendToServer(msg.next??'unknown', signed, ch, msg.txId);
   },
 };
