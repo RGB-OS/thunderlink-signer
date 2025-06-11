@@ -22,18 +22,18 @@
 ### Setup
 1. Clone the ThunderLink RGB Signer service.
 2. Create a `.env` file with:
-\`\`\`env
+ ```env
 MNEMONIC="" 
 XPUB_VAN="" 
 XPUB_COL="" 
 RABBITMQ_URI="" // provided by ThunderLink
-\`\`\`
+```
 3. Start the signer:
-\`\`\`bash
+```bash
 npm install
 npm run build
 npm run start
-\`\`\`
+```
 
 ---
 
@@ -56,14 +56,14 @@ npm run start
 | Signer → RGB Manager | `rpc.to-server`   | Returns signed PSBTs                   |
 
 Each message follows this structure:
-\`\`\`ts
+```ts
 interface RpcMessage {
   txId: string;          // Unique transaction ID for tracking
   method: string;        // e.g. "sign"
   payload: string;       // PSBT (string) or response data
   next?: string;         // Optional: next method to call on response
 }
-\`\`\`
+```
 
 ---
 
@@ -82,23 +82,23 @@ Currently supported:
 ## 📘 Example Flow
 
 1. RGB Manager sends:
-\`\`\`json
+```json
 {
   "txId": "123abc",
   "method": "sign",
   "payload": "<unsigned_psbt_base64>",
   "next": "broadcast"
 }
-\`\`\`
+```
 
 2. RGB Signer signs and responds:
-\`\`\`json
+```json
 {
   "txId": "123abc",
   "method": "broadcast",
   "payload": "<signed_psbt_base64>"
 }
-\`\`\`
+```
 
 ---
 
