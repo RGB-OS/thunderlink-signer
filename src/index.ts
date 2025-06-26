@@ -7,7 +7,6 @@ async function start() {
 
   const ch = await getSecureChannel();
   ch.prefetch(1);
-
   console.log('Client waiting for RPC messages...');
   ch.consume('rpc.to-client', async (msg) => {
     if (!msg) return;
