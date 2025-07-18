@@ -5,10 +5,14 @@ const xpub_col = process.env.XPUB_COL!;
 const mnemonic = process.env.MNEMONIC;
 const master_fingerprint=  process.env.MASTER_FINGERPRINT!
 const raw = process.env.BITCOIN_NETWORK;
+console.log("BITCOIN_NETWORK raw",raw)
 if (!raw) throw new Error("BITCOIN_NETWORK is not set");
 
 const network = parseInt(raw, 10);
+console.log("BITCOIN_NETWORK network",network)
 if (isNaN(network)) throw new Error(`Invalid BITCOIN_NETWORK: ${raw}`);
+
+
 
 if(!master_fingerprint){
   throw new Error('MASTER_FINGERPRINT is missing from environment variables');
