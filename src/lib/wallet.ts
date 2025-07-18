@@ -8,7 +8,6 @@ const network = process.env.BITCOIN_NETWORK!;
 console.log("BITCOIN_NETWORK raw",network)
 if (!network) throw new Error("BITCOIN_NETWORK is not set");
 
-
 if(!master_fingerprint){
   throw new Error('MASTER_FINGERPRINT is missing from environment variables');
 }
