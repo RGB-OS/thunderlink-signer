@@ -7,6 +7,7 @@ export const methodHandlers: Record<string, (msg: RpcMessage, channel: Channel) 
   sign: async (msg, ch) => {
     const unsignedPSBT = msg.payload as string;
     const signed = await wallet.signPsbt(unsignedPSBT,mnemonic);
+    console.log("psbt signed successfully");
     sendToServer(msg.next??'unknown', signed, ch, msg.txId);
   },
 };
