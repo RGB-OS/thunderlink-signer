@@ -1,7 +1,7 @@
 
 # ThunderLink RGB Signer
 
-**ThunderLink RGB Signer** is a lightweight backend service designed to securely sign PSBTs (Partially Signed Bitcoin Transactions) on behalf of the ThunderLink RGB Manager. It is meant to be run in a customer-controlled environment and never exposes any external HTTP interfaces. All communication is handled over **RabbitMQ channels**, ensuring a secure and isolated signing process.
+**ThunderLink RGB Signer** is a lightweight backend service designed to securely sign PSBTs (Partially Signed Bitcoin Transactions) on behalf of the RGB Node. It is meant to be run in a customer-controlled environment and never exposes any external HTTP interfaces. All communication is handled over **RabbitMQ channels**, ensuring a secure and isolated signing process.
 
 ---
 
@@ -11,6 +11,7 @@
 - Listens for signing requests from ThunderLink RGB Manager
 - Signs PSBTs and returns signed transactions through a secure message queue
 - **Never exposes keys or services over the public internet**
+- Validation of PSBT (not implemented yet)
 
 ---
 
@@ -104,6 +105,7 @@ Currently supported:
 
 ## 🔒 Security Notes
 
+- **Current implementation uses blind signing and do not validate PSBT**: wip
 - **No public-facing ports**: All communication is internal via RabbitMQ.
 - **Private keys are never transmitted**: Only unsigned PSBTs and signed responses are exchanged.
 - **Signer is isolated**: Runs inside your infrastructure, fully under your control.
